@@ -7,3 +7,6 @@ from pyproms.proms_report_external import PromsExternalReport
 from pyproms.proms_report_internal import PromsInternalReport
 from pyproms.report_sender import ReportSender
 from pyproms.proms_error import *
+from pyproms.lsutech_product import LsutechProduct
+from pyproms.lsutech_stuff import LsutechStuff
+from pyproms.utils import HashValue
