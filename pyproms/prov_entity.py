@@ -13,11 +13,12 @@ class ProvEntity(OwlClass):
     def __init__(self,
                  label,
                  uri=None,
+                 blockchainuri=None,
                  comment=None,
                  wasAttributedTo=None,
                  value=None):
 
-        OwlClass.__init__(self, label, uri, comment)
+        OwlClass.__init__(self, label, uri, blockchainuri, comment)
 
         if wasAttributedTo:
             self.__set_wasAttributedTo(wasAttributedTo)

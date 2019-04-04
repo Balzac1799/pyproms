@@ -12,14 +12,16 @@ class OwlClass(object):
     def __init__(self,
                  label,
                  uri=None,
+                 blockchainuri=None,
                  comment=None):
         self.g = None
         self.label = label
         if uri:
             self.uri = uri
         else:
-            self.uri = 'http://placeholder.org#' + str(uuid.uuid4())
+            self.uri = 'http://www.lsutech.com#' + str(uuid.uuid4())
         self.comment = comment
+        self.blockchainuri = blockchainuri
 
     def set_uri(self, uri):
         self.uri = uri
@@ -36,6 +38,7 @@ class OwlClass(object):
         self.g = Graph()
 
         XSD = Namespace('http://www.w3.org/2001/XMLSchema#')
+        LSUTECH = Namespace("http://www.lsutech.com/#")
 
         self.g.add((URIRef(self.uri),
                     RDF.type,
@@ -49,6 +52,11 @@ class OwlClass(object):
             self.g.add((URIRef(self.uri),
                         RDFS.comment,
                         Literal(self.comment, datatype=XSD.string)))
+        if self.blockchainuri:
+            self.g.add((URIRef(self.blockchainuri),
+                        LSUTECH.blockchainuri,
+                        OWL.Class
+                        ))
 
     def get_graph(self):
         """

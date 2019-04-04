@@ -12,10 +12,11 @@ class ProvAgent(OwlClass):
             self,
             label,
             uri=None,
+            blockchainuri=None,
             comment=None,
             actedOnBehalfOf=None):
 
-        OwlClass.__init__(self, label, uri, comment)
+        OwlClass.__init__(self, label, uri, blockchainuri, comment)
 
         if actedOnBehalfOf:
             self.set_actedOnBehalfOf(actedOnBehalfOf)

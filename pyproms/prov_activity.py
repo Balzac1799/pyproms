@@ -16,12 +16,13 @@ class ProvActivity(OwlClass):
                  endedAtTime,
                  wasAssociatedWith=None,
                  uri=None,
+                 blockchainuri=None,
                  comment=None,
                  used_entities=None,
                  generated_entities=None,
                  wasInformedBy=None):
 
-        OwlClass.__init__(self, label, uri, comment)
+        OwlClass.__init__(self, label, uri, blockchainuri, comment)
 
         self.__set_startedAtTime(startedAtTime)
         self.__set_endedAtTime(endedAtTime)
