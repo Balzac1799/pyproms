@@ -3,6 +3,8 @@ from rdflib.namespace import RDF, OWL
 import datetime
 from pyproms.owlclass import OwlClass
 from pyproms.prov_entity import ProvEntity
+from pyproms.lsutech_product import LsutechProduct
+from pyproms.lsutech_stuff import LsutechStuff
 from pyproms.prov_agent import ProvAgent
 
 
@@ -66,16 +68,16 @@ class ProvActivity(OwlClass):
             raise TypeError('endedAtTime must be a datetime.datetime, not a %s' % type(endedAtTime))
 
     def __set_used_entities(self, used_entities):
-        if all(isinstance(n, ProvEntity) for n in used_entities):
+        if all(isinstance(n, ProvEntity) for n in used_entities) or all(isinstance(n,LsutechStuff) for n in used_entities):
             self.used_entities = used_entities
         else:
-            raise TypeError('used_entities must be a list of Entity objects')
+            raise TypeError('used_entities must be a list of Entity objects or a list of LsutechStuff')
 
     def __set_generated_entities(self, generated_entities):
-        if all(isinstance(n, ProvEntity) for n in generated_entities):
+        if all(isinstance(n, ProvEntity) for n in generated_entities) or all(isinstance(n,LsutechProduct) for n in generated_entities) or all(isinstance(n,LsutechStuff) for n in generated_entities):
             self.generated_entities = generated_entities
         else:
-            raise TypeError('used_entities must be a list of Entity objects')
+            raise TypeError('used_entities must be a list of Entity objects or a list of LsutechProduct or a list of LsutechStuff.')
 
     def __set_wasInformedBy(self, wasInformedBy):
         if type(wasInformedBy) is ProvActivity:
