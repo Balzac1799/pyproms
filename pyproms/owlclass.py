@@ -1,3 +1,4 @@
+from uuid import uuid4
 from pyproms.utils import HashValue
 from rdflib import URIRef, Literal, Namespace, Graph
 from rdflib.namespace import RDF, RDFS, OWL
@@ -22,9 +23,10 @@ class OwlClass(object):
         if uri:
             self.uri = uri
         else:
-            self.uri = 'http://www.lsutech.com#' + str(HashValue("%(label)s#%(cmt)s#%(blcu)s"%{"blcu":self.blockchainuri if self.blockchainuri else "",
+            self.uri = 'http://www.lsutech.com/' + str(HashValue("%(label)s#%(cmt)s#%(blcu)s#%(rnds)s"%{"blcu":self.blockchainuri if self.blockchainuri else "",
                 "label":self.label,
-                "cmt":self.comment}))
+                "cmt":self.comment,
+                "rnds":str(uuid4())}))
 
 
     def set_uri(self, uri):

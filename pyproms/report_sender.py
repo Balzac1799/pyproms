@@ -9,7 +9,6 @@ class ReportSender:
     A tiny class to send Reports to a PROMS Server instance.
     Basically wraps requests post method
     """
-
     def post(self, proms_report_lodging_uri, report):
         """
         POSTS an RDF-serialised Report object to a PROMS server instance

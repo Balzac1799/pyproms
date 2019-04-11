@@ -25,3 +25,12 @@ Brisbane, Queensland
 <https://orcid.org/0000-0002-8742-7730>
 
 We are interested in any extensions people have made to PyPROMS and are keen to take on suggestions so please get in touch!
+
+**Fangkc**
+*development of Lsutech*
+LSUTECH 
+<kecheng.fang@lsutech.com>
+<http://fangself.com.cn>
+
+2019/04/11
+we changed the startedAtTime of Activity to miliseconds formats.

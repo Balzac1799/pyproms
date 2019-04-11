@@ -33,7 +33,12 @@ class LsutechStuff(OwlClass):
 			self.__set_value(value)
 		else:
 			self.value = None
-		
+	def set_wasAttributedTo(self,wasAttributedTo):
+		if type(wasAttributedTo) is ProvAgent:
+			self.wasAttributedTo = wasAttributedTo
+		else:
+			raise TypeError('wasAttributedTo must be an Agent, not a %s' % type(wasAttributedTo))
+
 	def __set_wasAttributedTo(self, wasAttributedTo):
 		if type(wasAttributedTo) is ProvAgent:
 			self.wasAttributedTo = wasAttributedTo

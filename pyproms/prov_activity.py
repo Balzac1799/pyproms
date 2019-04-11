@@ -114,7 +114,7 @@ class ProvActivity(OwlClass):
         if self.startedAtTime:
             self.g.add((URIRef(self.uri),
                         PROV.startedAtTime,
-                        Literal(self.startedAtTime.strftime("%Y-%m-%dT%H:%M:%S"), datatype=XSD.dateTime)))
+                        Literal(self.startedAtTime.strftime("%Y-%m-%dT%H:%M:%S::%f"), datatype=XSD.dateTime)))
 
         if self.endedAtTime:
             self.g.add((URIRef(self.uri),

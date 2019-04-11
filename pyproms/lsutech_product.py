@@ -6,8 +6,6 @@ from pyproms.prov_entity import ProvEntity
 from pyproms.owlclass import OwlClass
 
 
-
-
 class LsutechProduct(OwlClass):
 	def __init__(self,
 				label,
@@ -33,6 +31,11 @@ class LsutechProduct(OwlClass):
 		else:
 			self.value = None
 		self.scanTime = scanTime if scanTime else datetime.strptime("2071-01-01T00:00:00","%Y-%m-%dT%H:%M:%S")
+	def set_blockchainuri(self,blockchainuri):
+		self.blockchainuri = blockchainuri
+
+	def get_blockchainuri(self):
+		return self.blockchainuri
 
 	def __set_wasAttributedTo(self, wasAttributedTo):
 		if type(wasAttributedTo) is ProvAgent:
@@ -91,6 +94,12 @@ class LsutechProduct(OwlClass):
 						PROV.scanTime,
 						Literal(self.scanTime.strftime("%Y-%m-%dT%H:%M:%S"), 
 								datatype=XSD.dateTime)))
+		if self.blockchainuri:
+			self.g.add((URIRef(self.uri),
+				LSUTECH.blockchainuri,
+				URIRef(self.blockchainuri)
+				))
+
 	def get_graph(self):
 		if not self.g:
 			self.make_graph()

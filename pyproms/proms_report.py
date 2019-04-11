@@ -1,10 +1,11 @@
 from datetime import datetime
+from pyproms.utils import HashValue
 from rdflib import URIRef, Namespace, Literal
 from rdflib.namespace import RDF, OWL
 from pyproms.owlclass import OwlClass
 from pyproms.proms_reportingsystem import PromsReportingSystem
 from pyproms.prov_activity import ProvActivity
-import uuid
+from uuid import uuid4
 
 
 class PromsReport(OwlClass):
@@ -21,7 +22,10 @@ class PromsReport(OwlClass):
 
         OwlClass.__init__(self, label, comment)
 
-        self.uri = 'http://placeholder.org#' + str(uuid.uuid4())
+        self.uri = 'http://www.lsutech.com#' + str(HashValue("%(label)s#%(cmt)s#%(blcu)s#%(rnds)s"%{"blcu":self.blockchainuri if self.blockchainuri else "",
+                "label":self.label,
+                "cmt":self.comment,
+                "rnds":str(uuid4())}))
         self.__set_wasReportedBy(wasReportedBy)
         self.__set_nativeId(nativeId)
         self.__set_reportActivity(reportActivity)
@@ -43,7 +47,7 @@ class PromsReport(OwlClass):
         if type(reportActivity) is ProvActivity:
             self.reportActivity = reportActivity
         else:
-            raise TypeError('reportActivity must be an Agent, not a %s' % type(reportActivity))
+            raise TypeError('reportActivity must be an Activity, not a %s' % type(reportActivity))
 
     def __set_generatedAtTime(self, generatedAtTime):
         if type(generatedAtTime) is datetime:
